@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/1280px-Walmart_logo.svg.png" alt="Walmart Logo" width="300" height="150">
+  <img src="https://github.com/PrajwalGpy/Walmart-Project-py-sql/blob/main/Walmart-logo.png" alt="Walmart Logo" >
 </div>
 
 # Walmart Sales Data Analysis | End-to-End Data Engineering Project
