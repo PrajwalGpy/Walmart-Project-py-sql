@@ -373,3 +373,7 @@ Walmart-Project-py-sql/
 - Python packages: pandas, numpy, jupyter, sqlalchemy, etc.
 
 ---
+
+## Conclusion
+
+This project demonstrates a complete data engineering pipeline from data extraction to business insights. It showcases proficiency in Python, SQL, and database management while solving real-world analytical problems.
