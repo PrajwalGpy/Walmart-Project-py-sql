@@ -1,0 +1,578 @@
+================================================================================
+WALMART PROJECT - SETUP & INSTALLATION GUIDE
+================================================================================
+
+PROJECT DETAILS
+================================================================================
+Project Name: Walmart Sales Analysis Project
+Location: c:\Users\prajw\Downloads\Walmart-Project-py-sql
+Programming Language: Python 3.8+
+Database: SQLite / PostgreSQL (Optional)
+Main File: prject.ipynb (Jupyter Notebook)
+Data Location: walmart-dataset/Walmart.csv
+
+
+SYSTEM REQUIREMENTS
+================================================================================
+
+Minimum Requirements:
+  - Operating System: Windows 10/11, macOS 10.14+, or Linux (Ubuntu 18.04+)
+  - RAM: 4 GB minimum (8 GB recommended)
+  - Disk Space: 2 GB free space
+  - Internet Connection: Required for package installation
+
+Software Prerequisites:
+  - Python 3.8 or higher
+  - pip (Python package installer)
+  - Git (Optional, for version control)
+  - Visual Studio Code or any text editor
+
+
+STEP 1: CHECK PYTHON INSTALLATION
+================================================================================
+
+Windows (Command Prompt):
+  C:\> python --version
+
+Windows (PowerShell):
+  PS C:\> python --version
+
+Linux/Mac (Terminal):
+  $ python3 --version
+
+Expected Output: Python 3.8.0 or higher
+
+If Python is not installed:
+  1. Visit: https://www.python.org/downloads/
+  2. Download Python 3.11+ (LTS version recommended)
+  3. Run the installer
+  4. IMPORTANT: Check "Add Python to PATH" during installation
+  5. Restart your computer
+  6. Verify installation with command above
+
+
+STEP 2: NAVIGATE TO PROJECT DIRECTORY
+================================================================================
+
+Windows (Command Prompt):
+  C:\> cd C:\Users\prajw\Downloads\Walmart-Project-py-sql
+
+Windows (PowerShell):
+  PS C:\> cd C:\Users\prajw\Downloads\Walmart-Project-py-sql
+
+Linux/Mac (Terminal):
+  $ cd ~/Downloads/Walmart-Project-py-sql
+
+You should see the following files:
+  - prject.ipynb
+  - my_env/ (virtual environment folder)
+  - walmart-dataset/
+  - walmart-10k-sales-datasets.zip
+  - SQL/ (SQL queries and documentation)
+
+
+STEP 3: CREATE VIRTUAL ENVIRONMENT
+================================================================================
+
+Why use a virtual environment?
+  - Isolates project dependencies
+  - Prevents conflicts with other projects
+  - Makes project portable and shareable
+  - Keeps system Python clean
+
+Windows (Command Prompt or PowerShell):
+  python -m venv my_env
+
+Linux/Mac (Terminal):
+  python3 -m venv my_env
+
+This creates a folder called "my_env" with isolated Python installation.
+
+Expected output: None (if successful, command completes silently)
+
+Verification:
+  - Look for "my_env" folder in your project directory
+  - Inside should be: Scripts (or bin on Linux/Mac), Lib, pyvenv.cfg
+
+
+STEP 4: ACTIVATE VIRTUAL ENVIRONMENT
+================================================================================
+
+WINDOWS - Command Prompt:
+  my_env\Scripts\activate.bat
+
+WINDOWS - PowerShell:
+  my_env\Scripts\Activate.ps1
+
+  If you get an error about execution policy, run:
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+  Then accept by typing: Y and press Enter
+  Then run the activation command again
+
+LINUX/MAC - Terminal:
+  source my_env/bin/activate
+
+What to expect after activation:
+  (my_env) C:\Users\prajw\Downloads\Walmart-Project-py-sql>
+
+Notice "(my_env)" prefix in command line - this confirms activation.
+
+
+STEP 5: UPGRADE PIP
+================================================================================
+
+Running with activated virtual environment:
+
+Windows:
+  python -m pip install --upgrade pip
+
+Linux/Mac:
+  python3 -m pip install --upgrade pip
+
+Expected output: Successfully installed pip-X.X.X
+
+
+STEP 6: INSTALL REQUIRED PACKAGES
+================================================================================
+
+Option A: Install packages individually:
+
+Core Data Science Packages:
+  pip install pandas numpy matplotlib seaborn scipy
+
+Jupyter & Notebooks:
+  pip install jupyter jupyterlab ipython
+
+Database Support (Optional):
+  pip install sqlalchemy psycopg2-binary sqlite3
+
+Utilities:
+  pip install requests beautifulsoup4
+
+Install All At Once:
+  pip install pandas numpy matplotlib seaborn scipy jupyter jupyterlab ipython sqlalchemy requests beautifulsoup4
+
+Installation Progress:
+  You will see output like:
+  Collecting pandas
+  Downloading pandas-2.0.0-cp311-cp311-win_amd64.whl (11.4 MB)
+  Installing collected packages: ...
+  Successfully installed pandas-2.0.0
+
+This may take 5-10 minutes depending on internet speed.
+
+
+STEP 7: VERIFY INSTALLATION
+================================================================================
+
+Check Python version:
+  python --version
+
+List all installed packages:
+  pip list
+
+Check specific packages:
+  pip show pandas
+  pip show numpy
+  pip show jupyter
+
+Launch Python interactive shell:
+  python
+
+Inside Python shell:
+  >>> import pandas
+  >>> import numpy
+  >>> import matplotlib
+  >>> exit()
+
+All imports should complete without errors.
+
+
+STEP 8: LAUNCH JUPYTER NOTEBOOK
+================================================================================
+
+With virtual environment activated, run:
+
+  jupyter notebook
+
+Expected behavior:
+  - Terminal shows output: [I 14:23:45.123 NotebookApp] Serving notebooks from local directory...
+  - Browser opens automatically with Jupyter interface
+  - URL shown: http://localhost:8888
+
+Navigate to your project:
+  1. In browser, find "prject.ipynb" in file browser
+  2. Click to open
+  3. Notebook loads in new tab
+
+
+RUNNING JUPYTER NOTEBOOK
+================================================================================
+
+Basic Operations:
+  - To run a cell: Press Shift + Enter
+  - To add new cell: Click "+" button or press "A" (above) or "B" (below)
+  - To delete cell: Select cell, press "D" twice
+  - To restart kernel: Kernel > Restart & Run All
+
+Data Analysis Workflow:
+  1. Load data from walmart-dataset/Walmart.csv
+  2. Explore data structure
+  3. Data cleaning and preprocessing
+  4. Exploratory Data Analysis (EDA)
+  5. Visualizations
+  6. Statistical analysis
+
+Save your work:
+  - Jupyter auto-saves every few minutes
+  - Manually save: File > Save or Ctrl+S
+
+
+STEP 9: WORKING WITH DATA
+================================================================================
+
+Data Location:
+  Path: walmart-dataset/Walmart.csv
+  Size: Large dataset with multiple columns
+  Format: CSV (Comma-Separated Values)
+
+Loading Data in Jupyter:
+  import pandas as pd
+  df = pd.read_csv('walmart-dataset/Walmart.csv')
+
+Explore Data:
+  df.head()           # View first 5 rows
+  df.info()           # Data types and missing values
+  df.describe()       # Statistical summary
+  df.shape            # Dimensions (rows, columns)
+  df.columns          # Column names
+  df.isnull().sum()   # Count missing values
+
+
+STEP 10: DEACTIVATE VIRTUAL ENVIRONMENT
+================================================================================
+
+When finished working on the project:
+
+Windows (Command Prompt or PowerShell):
+  deactivate
+
+Linux/Mac (Terminal):
+  deactivate
+
+Expected output: Prompt returns to normal (no "(my_env)" prefix)
+
+
+COMMON ISSUES & TROUBLESHOOTING
+================================================================================
+
+ISSUE 1: "python is not recognized as an internal or external command"
+Solution:
+  - Python not installed or not in PATH
+  - Reinstall Python, check "Add Python to PATH"
+  - Or use full path: C:\Python311\python --version
+
+ISSUE 2: "No module named 'pip'"
+Solution:
+  - Ensure Python 3.4+ (pip included)
+  - Run: python -m ensurepip --upgrade
+  - Then: python -m pip install --upgrade pip
+
+ISSUE 3: PowerShell execution policy error
+Solution:
+  - Run PowerShell as Administrator
+  - Type: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+  - Press: Y and Enter
+  - Try activation again
+
+ISSUE 4: "ModuleNotFoundError: No module named 'pandas'"
+Solution:
+  - Ensure virtual environment is activated
+  - Check "(my_env)" in command prompt
+  - Reinstall packages: pip install pandas
+
+ISSUE 5: Jupyter notebook port already in use
+Solution:
+  - Port 8888 occupied by another Jupyter instance
+  - Option 1: Close other Jupyter windows
+  - Option 2: Use different port: jupyter notebook --port 8889
+
+ISSUE 6: ImportError in Jupyter cells
+Solution:
+  - Kernel using wrong Python environment
+  - Kernel > Restart & Clear Output
+  - Close and reopen notebook
+  - Verify virtual environment is activated
+
+ISSUE 7: Very slow pip installation
+Solution:
+  - Check internet connection
+  - Try: pip install --upgrade pip
+  - Use: pip install -i https://mirrors.aliyun.com/pypi/simple/ package_name
+
+ISSUE 8: Permission denied during installation
+Solution:
+  - Ensure virtual environment is activated
+  - Windows: Run Command Prompt as Administrator
+  - Linux/Mac: Use: pip install --user package_name
+
+
+PACKAGE DESCRIPTIONS
+================================================================================
+
+pandas
+  Purpose: Data manipulation and analysis
+  Uses: Reading CSV, data cleaning, grouping, aggregations
+
+numpy
+  Purpose: Numerical computing and array operations
+  Uses: Mathematical calculations, array operations
+
+matplotlib
+  Purpose: Data visualization (static plots)
+  Uses: Creating line plots, bar charts, histograms
+
+seaborn
+  Purpose: Statistical data visualization
+  Uses: Creating attractive statistical graphics
+
+scipy
+  Purpose: Scientific computing
+  Uses: Statistical tests, distributions
+
+jupyter
+  Purpose: Interactive notebook environment
+  Uses: Writing and running Python code with markdown
+
+jupyterlab
+  Purpose: Modern Jupyter interface
+  Uses: Enhanced notebook editing experience
+
+ipython
+  Purpose: Interactive Python shell
+  Uses: Better Python REPL with tab completion
+
+sqlalchemy
+  Purpose: SQL toolkit and Object-Relational Mapping
+  Uses: Database operations (if using database)
+
+psycopg2
+  Purpose: PostgreSQL database adapter
+  Uses: Connecting to PostgreSQL (if using)
+
+requests
+  Purpose: HTTP library for Python
+  Uses: Web scraping, API calls
+
+beautifulsoup4
+  Purpose: Web scraping library
+  Uses: Parsing HTML/XML documents
+
+
+PROJECT FILE STRUCTURE
+================================================================================
+
+After complete installation:
+
+Walmart-Project-py-sql/
+  my_env/                           # Virtual environment (auto-created)
+    Scripts/                        # Executables (Windows)
+      python.exe
+      pip.exe
+      jupyter.exe
+    Lib/                           # Python packages
+      site-packages/
+        pandas/
+        numpy/
+        jupyter/
+        ... (other packages)
+    pyvenv.cfg                      # Configuration file
+
+  walmart-dataset/                  # Data folder
+    Walmart.csv                     # Main dataset
+
+  SQL/                             # SQL files
+    Walmart Business Problems.pdf   # Business problems documentation
+    walmart-py-sqlsql.sql          # SQL queries
+
+  prject.ipynb                      # Jupyter notebook (main file)
+  
+  walmart-10k-sales-datasets.zip    # Compressed dataset backup
+
+  Walmart.md                        # README file
+  INSTALLATION.txt                  # This file
+
+
+ENVIRONMENT VARIABLES (OPTIONAL)
+================================================================================
+
+Windows - Set PYTHONPATH (if needed):
+  set PYTHONPATH=%PYTHONPATH%;C:\Users\prajw\Downloads\Walmart-Project-py-sql
+
+Linux/Mac - Set PYTHONPATH:
+  export PYTHONPATH="$PYTHONPATH:/Users/username/Downloads/Walmart-Project-py-sql"
+
+
+CREATING requirements.txt (FOR SHARING)
+================================================================================
+
+To save your environment configuration:
+
+  pip freeze > requirements.txt
+
+This creates a file listing all installed packages.
+
+Others can recreate your environment:
+  pip install -r requirements.txt
+
+
+GIT SETUP (OPTIONAL)
+================================================================================
+
+Initialize Git repository:
+  git init
+
+Create .gitignore file:
+  Add line: my_env/
+  This prevents uploading large environment folder
+
+Add files to Git:
+  git add .
+  git commit -m "Initial commit - Walmart project setup"
+
+
+PERFORMANCE TIPS
+================================================================================
+
+1. Data Processing:
+   - Use pandas vectorized operations instead of loops
+   - Example: df[df['column'] > 100] instead of for loop
+
+2. Memory Management:
+   - Check data types: df.dtypes
+   - Convert to appropriate types: df['column'] = df['column'].astype('int32')
+   - Use chunking for large files
+
+3. Visualization:
+   - Use seaborn for publication-quality plots
+   - Limit number of plots displayed simultaneously
+   - Save figures instead of displaying all
+
+
+ADDITIONAL RESOURCES
+================================================================================
+
+Official Documentation:
+  Python: https://docs.python.org/3/
+  Pandas: https://pandas.pydata.org/docs/
+  NumPy: https://numpy.org/doc/
+  Matplotlib: https://matplotlib.org/stable/contents.html
+  Jupyter: https://jupyter.org/documentation
+
+Learning Resources:
+  Real Python: https://realpython.com/
+  Kaggle: https://www.kaggle.com/learn/
+  DataCamp: https://www.datacamp.com/
+
+Debugging:
+  Stack Overflow: https://stackoverflow.com/
+  GitHub Issues: Search project repositories
+  Official forums: Check documentation
+
+
+SUMMARY CHECKLIST
+================================================================================
+
+Quick reference - complete these steps:
+
+  [ ] 1. Install Python 3.8+
+  [ ] 2. Open Command Prompt/Terminal
+  [ ] 3. Navigate to project directory
+  [ ] 4. Create virtual environment: python -m venv my_env
+  [ ] 5. Activate virtual environment
+  [ ] 6. Upgrade pip: python -m pip install --upgrade pip
+  [ ] 7. Install packages: pip install pandas numpy jupyter matplotlib seaborn
+  [ ] 8. Verify installation: pip list
+  [ ] 9. Launch Jupyter: jupyter notebook
+  [ ] 10. Open prject.ipynb in browser
+  [ ] 11. Run notebook cells to analyze data
+  [ ] 12. Save work regularly
+  [ ] 13. Deactivate when finished: deactivate
+
+
+SUPPORT & HELP
+================================================================================
+
+If you encounter issues:
+
+1. Check this guide for your specific error
+2. Search Stack Overflow with your error message
+3. Check official documentation
+4. Review your Python and package versions
+5. Try: pip install --upgrade package_name
+6. Restart virtual environment and Jupyter kernel
+
+
+NEXT STEPS AFTER INSTALLATION
+================================================================================
+
+1. Explore the dataset:
+   - Load Walmart.csv
+   - Check columns and data types
+   - Look for missing values
+
+2. Perform data cleaning:
+   - Handle missing values
+   - Remove duplicates
+   - Fix data type issues
+
+3. Conduct exploratory analysis:
+   - Calculate summary statistics
+   - Create visualizations
+   - Identify patterns and trends
+
+4. Develop insights:
+   - Answer business questions (see SQL folder)
+   - Create hypothesis tests
+   - Build predictions
+
+
+MAINTENANCE & UPDATES
+================================================================================
+
+Keep your environment updated:
+
+Check for outdated packages:
+  pip list --outdated
+
+Upgrade a specific package:
+  pip install --upgrade package_name
+
+Upgrade all packages:
+  pip install --upgrade pip
+  pip install -U --upgrade-strategy eager -r requirements.txt
+
+Recreate environment (clean slate):
+  Deactivate: deactivate
+  Delete folder: rm -r my_env (or delete my_env folder manually)
+  Recreate: python -m venv my_env
+  Activate and reinstall
+
+
+FINAL NOTES
+================================================================================
+
+- Always activate virtual environment before working
+- Keep virtual environment folder in project directory
+- Use requirements.txt for project sharing
+- Regularly save your Jupyter notebooks
+- Back up your data files
+- Document your analysis steps
+- Use version control (Git) for code management
+
+
+================================================================================
+Created: December 10, 2025
+Last Updated: December 10, 2025
+For questions or issues, refer to official documentation or community forums
+================================================================================
